@@ -24,3 +24,31 @@ core-project/
 │── README.md # Dokumentasi proyek
 
 
+
+---
+
+## ⚙️ Setup Development
+1. Clone Repository
+```bash
+git clone https://github.com/sutoni/core-project.git
+cd core-project
+
+
+2. Setup Backend (Laravel)
+cd backend
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan serve
+
+
+## Roadmap
+ Setup dasar (Laravel + React + Tailwind + ShadCN)
+ Integrasi GitHub & dokumentasi awal
+ Authentication (Laravel Sanctum)
+ User Management & Role
+
+
+
+
