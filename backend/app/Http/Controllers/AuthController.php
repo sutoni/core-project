@@ -72,13 +72,18 @@ class AuthController extends Controller
             return response()->json(['message' => 'OTP tidak valid atau sudah kadaluarsa'], 400);
         }
 
-        // Jika OTP valid → langsung login generate token Sanctum
+	  // Jika OTP valid → hapus record OTP supaya tidak bisa dipakai ulang
+	$record->delete();
+
+	// Jika OTP valid → langsung login generate token Sanctum
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message' => 'OTP valid, login sukses',
             'token' => $token,
-            'user' => $user
+	    'user' => $user,
+	    'roles'       => $user->getRoleNames(),
+            'permissions' => $user->getAllPermissions()->pluck('name')
         ]);
     }
 
